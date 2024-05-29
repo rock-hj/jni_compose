@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.hajni.composecodelab1"
+    namespace = "com.hajni.codelab1"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.hajni.composecodelab1"
+        applicationId = "com.hajni.codelab1"
         minSdk = 28
         targetSdk = 34
         versionCode = 1

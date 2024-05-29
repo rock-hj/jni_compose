@@ -1,4 +1,4 @@
-package com.hajni.composecodelab1
+package com.hajni.codelab1
 
 import org.junit.Test
 

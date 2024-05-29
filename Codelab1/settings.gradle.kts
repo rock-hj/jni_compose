@@ -19,5 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "ComposeCodelab1"
+rootProject.name = "CodeLab1"
 include(":app")
+ 

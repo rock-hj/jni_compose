@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId = "com.hajni.codelab1"
-        minSdk = 28
+        minSdk = 31
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     testImplementation(libs.junit)
+    implementation("androidx.compose.material:material-icons-extended")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

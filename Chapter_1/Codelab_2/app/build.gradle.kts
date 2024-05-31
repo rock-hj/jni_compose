@@ -63,4 +63,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation("dev.chrisbanes.material3:material3-window-size-class-multiplatform:0.5.0")
 }

@@ -47,16 +47,13 @@ import com.google.samples.apps.sunflower.viewmodels.PlantDetailViewModel
 
 @Composable
 fun PlantDetailDescription(plantDetailViewModel: PlantDetailViewModel) {
-    // Observes values coming from the VM's LiveData<Plant> field as State<Plant?>
     val plant by plantDetailViewModel.plant.observeAsState()
 
-    // New emissions from plant will make PlantDetailDescription recompose as the state's read here
+    // If plant is not null, display the content
     plant?.let {
-        // If plant is not null, display the content
         PlantDetailContent(it)
     }
 }
-
 @Composable
 fun PlantDetailContent(plant: Plant) {
     Surface {
@@ -76,15 +73,24 @@ private fun PlantName(name: String) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = dimensionResource(R.dimen.margin_small))
-            .wrapContentWidth(align = Alignment.CenterHorizontally)
+            .wrapContentWidth(Alignment.CenterHorizontally)
     )
 }
+
+@Preview(showBackground = true)
+@Composable
+private fun PlantNamePreview() {
+    val plant = Plant("id", "Apple", "description", 3, 30, "")
+    SunflowerTheme {
+        PlantDetailContent(plant)
+    }
+}
+
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 private fun PlantWatering(wateringInterval: Int) {
     Column(Modifier.fillMaxWidth()) {
-        // Same modifier used by both Texts
         val centerWithPaddingModifier = Modifier
             .padding(horizontal = dimensionResource(R.dimen.margin_small))
             .align(Alignment.CenterHorizontally)
@@ -99,9 +105,7 @@ private fun PlantWatering(wateringInterval: Int) {
         )
 
         val wateringIntervalText = pluralStringResource(
-            R.plurals.watering_needs_suffix,
-            wateringInterval,
-            wateringInterval
+            R.plurals.watering_needs_suffix, wateringInterval, wateringInterval
         )
         Text(
             text = wateringIntervalText,
@@ -109,6 +113,15 @@ private fun PlantWatering(wateringInterval: Int) {
         )
     }
 }
+
+@Preview(showBackground = true)
+@Composable
+private fun PlantWateringPreview() {
+    SunflowerTheme {
+        PlantWatering(7)
+    }
+}
+
 
 @Composable
 private fun PlantDescription(description: String) {
@@ -131,44 +144,20 @@ private fun PlantDescription(description: String) {
     )
 }
 
-@Preview
-@Composable
-private fun PlantDetailContentPreview() {
-    val plant = Plant("id", "Apple", "HTML<br><br>description", 3, 30, "")
-    SunflowerTheme {
-        PlantDetailContent(plant)
-    }
-}
-
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun PlantDetailContentDarkPreview() {
-    val plant = Plant("id", "Apple", "HTML<br><br>description", 3, 30, "")
-    SunflowerTheme {
-        PlantDetailContent(plant)
-    }
-}
-
-@Preview
-@Composable
-private fun PlantNamePreview() {
-    SunflowerTheme {
-        PlantName("Apple")
-    }
-}
-
-@Preview
-@Composable
-private fun PlantWateringPreview() {
-    SunflowerTheme {
-        PlantWatering(7)
-    }
-}
 
 @Preview
 @Composable
 private fun PlantDescriptionPreview() {
     SunflowerTheme {
         PlantDescription("HTML<br><br>description")
+    }
+}
+
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+private fun PlantDetailContentPreview() {
+    val plant = Plant("id", "Apple", "HTML<br><br>description", 3, 30, "")
+    SunflowerTheme {
+        PlantDetailContent(plant)
     }
 }

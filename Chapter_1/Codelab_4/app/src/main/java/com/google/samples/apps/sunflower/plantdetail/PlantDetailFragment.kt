@@ -21,6 +21,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.app.ShareCompat
@@ -53,7 +57,7 @@ class PlantDetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         val binding = DataBindingUtil.inflate<FragmentPlantDetailBinding>(
             inflater,
@@ -108,22 +112,15 @@ class PlantDetailFragment : Fragment() {
                         createShareIntent()
                         true
                     }
+
                     else -> false
                 }
             }
 
             composeView.apply {
-                // By default, the Composition is disposed when ComposeView is detached
-                // from the window. This causes problems during transitions as the ComposeView
-                // will still be visible on the screen after it's detached from the window.
-                // Instead, to dispose the Composition when the Fragment view lifecycle is
-                // destroyed, we set the DisposeOnViewTreeLifecycleDestroyed strategy as the
-                // ViewCompositionStrategy for this ComposeView
                 setViewCompositionStrategy(
                     ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed
                 )
-
-                // Add Jetpack Compose content to this View
                 setContent {
                     SunflowerTheme {
                         PlantDetailDescription(plantDetailViewModel)
@@ -169,4 +166,6 @@ class PlantDetailFragment : Fragment() {
     interface Callback {
         fun add(plant: Plant?)
     }
+
+
 }
